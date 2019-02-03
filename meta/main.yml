@@ -1,0 +1,27 @@
+---
+dependencies:
+  - role: eriklotin.docker
+    become: true
+
+galaxy_info:
+  role_name: jenkins
+  author: Erik Lotin
+  description: Install Docker and run Jenkins container.
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+  galaxy_tags:
+    - jenkins
+    - ci
+    - devops
+    - web
+    - docker

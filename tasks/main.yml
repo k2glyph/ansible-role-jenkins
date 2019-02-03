@@ -1,0 +1,23 @@
+---
+- name: Creates directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  with_items:
+    - "{{ jenkins_workdir}}"
+    - "{{ jenkins_workdir}}/jenkins_home"
+
+- name: Upload docker-compose.yml to host
+  copy:
+    src: "{{ item }}"
+    dest: "{{ jenkins_workdir}}/{{ item }}"
+  with_items:
+    - docker-compose.yml
+
+
+- name: Run docker-compose.yml
+  docker_service:
+    project_src: "{{ jenkins_workdir }}"
+  environment:
+    DOCKER_COMPOSE_JENKINS_PORT: "{{ jenkins_port }}"

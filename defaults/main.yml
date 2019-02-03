@@ -1,0 +1,3 @@
+---
+jenkins_workdir: "{{ ansible_env.HOME }}/jenkins"
+jenkins_port: 8080
