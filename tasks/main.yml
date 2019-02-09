@@ -8,7 +8,7 @@
     - "{{ jenkins_workdir }}"
     - "{{ jenkins_workdir }}/jenkins_home"
 
-- name: Upload docker-compose.yml to host
+- name: Upload docker-compose.yml and add-docker-group.sh to host
   copy:
     src: "{{ item }}"
     dest: "{{ jenkins_workdir }}/{{ item }}"
