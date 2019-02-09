@@ -14,10 +14,15 @@
     dest: "{{ jenkins_workdir}}/{{ item }}"
   with_items:
     - docker-compose.yml
-
+    - add-docker-group.sh
 
 - name: Run docker-compose.yml
   docker_service:
     project_src: "{{ jenkins_workdir }}"
   environment:
     DOCKER_COMPOSE_JENKINS_PORT: "{{ jenkins_port }}"
+  register: jenkins_container_result
+
+- name: Create docker group and add to it jenkins user inside a container
+  shell: "sh {{ jenkins_workdir}}/add-docker-group.sh"
+  when: jenkins_container_result.changed

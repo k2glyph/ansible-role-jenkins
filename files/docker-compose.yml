@@ -3,7 +3,7 @@ version: '3'
 services:
 
   jenkins:
-    image: jenkins/jenkins
+    image: eriklotin/jenkins
     container_name: jenkins
     privileged: true
     restart: unless-stopped
