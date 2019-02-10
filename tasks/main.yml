@@ -33,3 +33,4 @@
   notify:
     - Create docker group inside a container and add to it jenkins user
     - Restart jenkins container
+    - Get initial admin password

@@ -5,3 +5,11 @@
 
 - name: Restart jenkins container
   shell: "docker restart jenkins"
+
+- name: Get jenkins initial admin password from file
+  shell: "cat {{ jenkins_workdir }}/jenkins_home/secrets/initialAdminPassword"
+  register: initialAdminPassword
+  listen: Get initial admin password
+
+- debug: msg="Initial admin password: {{ initialAdminPassword.stdout }}"
+  listen: Get initial admin password
