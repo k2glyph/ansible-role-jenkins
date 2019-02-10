@@ -1,0 +1,7 @@
+---
+
+- name: Create docker group inside a container and add to it jenkins user
+  shell: "sh {{ jenkins_workdir }}/add-docker-group.sh"
+
+- name: Restart jenkins container
+  shell: "docker restart jenkins"

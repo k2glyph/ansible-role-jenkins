@@ -1,4 +1,5 @@
 ---
+
 - name: Creates directories
   file:
     path: "{{ item }}"
@@ -7,6 +8,13 @@
   with_items:
     - "{{ jenkins_workdir }}"
     - "{{ jenkins_workdir }}/jenkins_home"
+
+- name: Create symbolic link to jenkins_home
+  become: true
+  file:
+    src: "{{ jenkins_workdir }}/jenkins_home"
+    dest: "/var/jenkins_home"
+    state: link
 
 - name: Upload docker-compose.yml and add-docker-group.sh to host
   copy:
@@ -22,7 +30,6 @@
   environment:
     DOCKER_COMPOSE_JENKINS_PORT: "{{ jenkins_port }}"
   register: jenkins_container_result
-
-- name: Create docker group and add to it jenkins user inside a container
-  shell: "sh {{ jenkins_workdir }}/add-docker-group.sh"
-  when: jenkins_container_result.changed
+  notify:
+    - Create docker group inside a container and add to it jenkins user
+    - Restart jenkins container
