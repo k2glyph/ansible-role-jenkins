@@ -1,10 +1,10 @@
 ---
 
 - name: Create docker group inside a container and add to it jenkins user
-  shell: "sh {{ jenkins_workdir }}/add-docker-group.sh"
+  command: "sh {{ jenkins_workdir }}/add-docker-group.sh"
 
 - name: Restart jenkins container
-  shell: "docker restart jenkins"
+  command: "docker restart jenkins"
 
 - name: Wait until the file initialAdminPassword is present before continuing
   wait_for:
@@ -12,7 +12,7 @@
   listen: Get initial admin password
 
 - name: Get jenkins initial admin password from file
-  shell: "cat {{ jenkins_workdir }}/jenkins_home/secrets/initialAdminPassword"
+  command: "cat {{ jenkins_workdir }}/jenkins_home/secrets/initialAdminPassword"
   register: initialAdminPassword
   listen: Get initial admin password
 
