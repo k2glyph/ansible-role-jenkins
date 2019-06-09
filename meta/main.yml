@@ -1,8 +1,4 @@
 ---
-dependencies:
-  - role: eriklotin.docker
-    become: true
-
 galaxy_info:
   role_name: jenkins
   author: Erik Lotin
