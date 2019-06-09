@@ -6,15 +6,7 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.4
   platforms:
-    - name: Debian
-      versions:
-        - jessie
-        - stretch
-    - name: Ubuntu
-      versions:
-        - trusty
-        - xenial
-        - bionic
+    - name: RedHat
   galaxy_tags:
     - jenkins
     - ci
